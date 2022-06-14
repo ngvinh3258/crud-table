@@ -81,20 +81,33 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .form-container {
-  width: 100%;
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 20%), 6px 12px 20px rgb(0 0 0 / 10%);
+  border-radius: 12px;
 }
 
 .form-group {
   display: flex;
   justify-items: start;
-  margin: 10px;
+  margin: 20px 10px 10px 10px;
 }
 
 input {
   width: 400px;
+  color: #586068;
+  font-size: 16px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: 3px solid transparent;
+}
+
+input :focus {
+  border: 1px solid rgb(179, 179, 236);
 }
 
 input.required {
@@ -103,10 +116,23 @@ input.required {
 
 label {
   width: 45px;
+  font-size: 16px;
 }
 
 button {
-  margin: 7px;
+  margin: 10px;
+  display: inline-block;
+  border: unset;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 3px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 1px 1px 10px rgb(0 0 0 / 20%);
+  transition: box-shadow .35s ease-out;
+  background-color: cornflowerblue;
 }
 
 p {

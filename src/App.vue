@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <InputForm />
-    <TablePost :header="posts" />
+    <div class="crud-table">
+      <InputForm />
+      <TablePost :header="posts" />
+    </div>
   </div>
 </template>
 
@@ -31,5 +33,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.crud-table {
+  width: 80%;
 }
 </style>

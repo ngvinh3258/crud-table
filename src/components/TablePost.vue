@@ -33,12 +33,20 @@ export default {
 <style scoped>
 table {
   width: 100%;
+
 }
 
 table,
 tr,
 th {
+  border: 1px solid white;
+  border-collapse: collapse;
 
-  border: 1px solid #000;
+}
+
+tr,
+th {
+  padding: 5px;
+  background-color: #96D4D4;
 }
 </style>
