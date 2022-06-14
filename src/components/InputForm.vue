@@ -54,15 +54,16 @@ export default {
       return true;
     },
     editPost() {
-      this.error = [];
       const id = this.$store.getters.input.id;
       const title = this.input.title;
       const body = this.input.body;
+      if(this.checkForm()){
       this.$store.dispatch('edistAPostFromAPI', {
         id: id,
         title: title,
         body: body,
       });
+      }
     },
     cancelEdit() {
       this.error = [];
