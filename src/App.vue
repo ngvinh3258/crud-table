@@ -1,18 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <InputForm />
+    <TablePost :header="posts" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TablePost from './components/TablePost.vue'
+import { mapGetters } from 'vuex';
+import InputForm from './components/InputForm.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    TablePost,
+    InputForm
+  },
+  computed: {
+    ...mapGetters(['posts']),
+  }, created() {
+    this.$store.dispatch('getPostFromAPI')
+  },
 }
 </script>
 
