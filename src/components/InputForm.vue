@@ -1,29 +1,23 @@
 <template>
-
   <div class="form-container">
     <div class="form-group">
       <label>Title</label>
       <div> <input type="text" v-model="input.title" :class="[error.title !== undefined ? requiredClass : '']" />
         <p v-if="error.title">{{ error.title }}</p>
       </div>
-
     </div>
-
     <div class="form-group">
       <label>Body</label>
       <div> <input type="text" v-model="input.body" :class="[error.body !== undefined ? requiredClass : '']" />
         <p v-if="error.body">{{ error.body }}</p>
       </div>
-
     </div>
-
     <div class="button-group">
-      <button @click="addNewPostInput">Add</button>
-      <button @click="editPost">Edit</button>
-      <button @click='cancelEdit'>Cancel</button>
+      <button @click="addNewPostInput" v-if="!input.id">Add</button>
+      <button @click="editPost" v-if="input.id">Edit</button>
+      <button @click='cancelEdit' v-if="input.id">Cancel</button>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -70,17 +64,15 @@ export default {
       this.$store.commit('setInput', { title: '', body: '' })
     },
     addNewPostInput() {
-
       const data = {
         id: uuidv4(),
         title: this.input.title,
         body: this.input.body
       }
-      // this.$store.commit('setInput', { title: '', body: '' });
       if (this.checkForm()) {
+        this.$store.commit('setInput', { title: '', body: '' });
         this.$store.dispatch('addNewPost', data);
       }
-
     }
   }
 }                                                                                       
