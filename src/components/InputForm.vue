@@ -36,6 +36,11 @@ export default {
     ...mapGetters(['input',]),
     ...mapActions(['addNewPost'])
   },
+  watch:{
+      input(){
+        this.error=[];
+      }
+  },
   methods: {
     checkForm() {
       let count = 0;
