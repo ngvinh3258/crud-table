@@ -6,7 +6,7 @@
     <td>{{ data.body }}</td>
     <td scope="row">
       <button type="button" class="button-edit" @click="handleEdit(data.id)">
-        Edit
+        Update
       </button>
     </td>
     <td scope="row">
