@@ -38,6 +38,7 @@ export default {
     },
     handleDelete(id) {
       this.$store.dispatch("deletePostFromAPI", id);
+      this.$store.commit("setInput", { title: "", body: "" });
     },
   },
 };
