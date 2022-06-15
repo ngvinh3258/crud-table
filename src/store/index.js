@@ -10,7 +10,7 @@ const store = new Vuex.Store({
   modules: {
     post,
     input,
-  },  
+  },
 });
 
 export default store;

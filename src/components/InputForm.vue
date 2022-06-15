@@ -2,86 +2,104 @@
   <div class="form-container">
     <div class="form-group">
       <label>Title</label>
-      <div> <input type="text" v-model="input.title" :class="[error.title !== undefined ? requiredClass : '']" />
+      <div>
+        <input
+          type="text"
+          v-model="input.title"
+          :class="[error.title !== undefined ? requiredClass : '']"
+        />
         <p v-if="error.title">{{ error.title }}</p>
       </div>
     </div>
     <div class="form-group">
       <label>Body</label>
-      <div> <input type="text" v-model="input.body" :class="[error.body !== undefined ? requiredClass : '']" />
+      <div>
+        <input
+          type="text"
+          v-model="input.body"
+          :class="[error.body !== undefined ? requiredClass : '']"
+        />
         <p v-if="error.body">{{ error.body }}</p>
       </div>
     </div>
     <div class="button-group">
       <button @click="addNewPostInput" v-if="!input.id">Add</button>
       <button @click="editPost" v-if="input.id">Edit</button>
-      <button @click='cancelEdit' v-if="input.id">Cancel</button>
+      <button @click="cancelEdit" v-if="input.id">Cancel</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import { v4 as uuidv4 } from 'uuid';
+import { mapActions, mapGetters } from "vuex";
+import { v4 as uuidv4 } from "uuid";
 
 export default {
-  name: 'InputForm',
+  name: "InputForm",
   data() {
     return {
       error: [],
-      requiredClass: 'required',
-    }
+      requiredClass: "required",
+    };
   },
   computed: {
-    ...mapGetters(['input',]),
-    ...mapActions(['addNewPost'])
+    ...mapGetters(["input"]),
+    ...mapActions(["addNewPost"]),
   },
-  watch:{
-      input(){
-        this.error=[];
-      }
+  watch: {
+    input() {
+      this.error = [];
+    },
   },
   methods: {
     checkForm() {
       let count = 0;
       this.error = [];
-      if (!this.input.title || this.input.title === '') { this.error.title = "The field is required!"; count++; }
-      if (!this.input.body || this.input.body === '') { this.error.body = "The field is required!"; count++; }
+      if (!this.input.title || this.input.title === "") {
+        this.error.title = "The field is required!";
+        count++;
+      }
+      if (!this.input.body || this.input.body === "") {
+        this.error.body = "The field is required!";
+        count++;
+      }
       if (count !== 0) {
         return false;
       }
-      if (this.input.body && this.input.title) { return true; }
+      if (this.input.body && this.input.title) {
+        return true;
+      }
       return true;
     },
     editPost() {
       const id = this.$store.getters.input.id;
       const title = this.input.title;
       const body = this.input.body;
-      if(this.checkForm()){
-      this.$store.dispatch('editAPostFromAPI', {
-        id: id,
-        title: title,
-        body: body,
-      });
+      if (this.checkForm()) {
+        this.$store.dispatch("editAPostFromAPI", {
+          id: id,
+          title: title,
+          body: body,
+        });
       }
     },
     cancelEdit() {
       this.error = [];
-      this.$store.commit('setInput', { title: '', body: '' })
+      this.$store.commit("setInput", { title: "", body: "" });
     },
     addNewPostInput() {
       const data = {
         id: uuidv4(),
         title: this.input.title,
-        body: this.input.body
-      }
+        body: this.input.body,
+      };
       if (this.checkForm()) {
-        this.$store.commit('setInput', { title: '', body: '' });
-        this.$store.dispatch('addNewPost', data);
+        this.$store.dispatch("addNewPost", data);
+        this.$store.commit("setInput", { title: "", body: "" });
       }
-    }
-  }
-}                                                                                       
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -137,7 +155,7 @@ button {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 1px 1px 10px rgb(0 0 0 / 20%);
-  transition: box-shadow .35s ease-out;
+  transition: box-shadow 0.35s ease-out;
   background-color: cornflowerblue;
 }
 

@@ -9,7 +9,11 @@
       </button>
     </td>
     <td scope="row">
-      <button type="button" class="button-delete" @click="handleDelete(data.id)">
+      <button
+        type="button"
+        class="button-delete"
+        @click="handleDelete(data.id)"
+      >
         Delete
       </button>
     </td>
@@ -17,24 +21,26 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'PostMor',
+  name: "PostMor",
   props: {
-    stt: Number,  
-    data: {}
-  },computed: {
-    ...mapGetters(['getPostById']),
-  }, methods: {
+    stt: Number,
+    data: {},
+  },
+  computed: {
+    ...mapGetters(["getPostById"]),
+  },
+  methods: {
     handleEdit(id) {
       this.$store.commit("setInput", this.getPostById(id));
     },
     handleDelete(id) {
-      this.$store.dispatch('deletePostFromAPI', id);
-    }
-  }
-}
+      this.$store.dispatch("deletePostFromAPI", id);
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -42,7 +48,6 @@ export default {
 .post-container,
 tr,
 td {
-
   border: 1px solid white;
   border-collapse: collapse;
   padding: 5px;
@@ -60,6 +65,6 @@ button {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 1px 1px 10px rgb(0 0 0 / 40%);
-  transition: box-shadow .35s ease-out;
+  transition: box-shadow 0.35s ease-out;
 }
 </style>
