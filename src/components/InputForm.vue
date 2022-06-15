@@ -58,7 +58,7 @@ export default {
       const title = this.input.title;
       const body = this.input.body;
       if(this.checkForm()){
-      this.$store.dispatch('edistAPostFromAPI', {
+      this.$store.dispatch('editAPostFromAPI', {
         id: id,
         title: title,
         body: body,

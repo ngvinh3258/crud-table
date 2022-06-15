@@ -17,14 +17,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'PostMor',
   props: {
-    stt: Number,
+    stt: Number,  
     data: {}
+  },computed: {
+    ...mapGetters(['getPostById']),
   }, methods: {
     handleEdit(id) {
-      this.$store.dispatch('getAPostFromApi', id);
+      this.$store.commit("setInput", this.getPostById(id));
     },
     handleDelete(id) {
       this.$store.dispatch('deletePostFromAPI', id);
