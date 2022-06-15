@@ -1,10 +1,11 @@
-import { add, deletes, getAll, update } from "@/service";
+import { add, deletes, getAll } from "@/service";
 
 const state = {
   posts: [],
 };
 const getters = {
   posts: (state) => state.posts,
+  getPostById: (state) => (id) => state.posts.find((p) => p.id === id),
 };
 const mutations = {
   setPosts(state, posts) {
@@ -36,8 +37,8 @@ const actions = {
     await deletes(id);
     commit("deletePost", id);
   },
-  edistAPostFromAPI({ commit }, data) {
-    update({ ...data, id: 1 });
+  editAPostFromAPI({ commit }, data) {
+    // update({ ...data, id: data.id });
     commit("updatePost", data);
   },
   async addNewPost({ commit }, data) {

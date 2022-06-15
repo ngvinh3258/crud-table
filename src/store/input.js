@@ -1,5 +1,3 @@
-import { getAPost } from "@/service";
-
 const state = {
   input: {},
 };
@@ -8,16 +6,10 @@ const getters = {
 };
 const mutations = {
   setInput(state, post) {
-    state.input = post;
+    state.input = { ...post };
   },
 };
-const actions = {
-  getAPostFromApi({ commit }, id) {
-    getAPost(id).then((res) => {
-      commit("setInput", res.data);
-    });
-  },
-};
+const actions = {};
 
 export default {
   state,
